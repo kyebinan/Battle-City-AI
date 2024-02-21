@@ -13,3 +13,5 @@ Examples include brick walls that can be destroyed by having either the player's
 ice fields that make it difficult to control the tank and patches of water which cannot be crossed by tanks. The game becomes more challenging in later levels, as enemy tanks may act as decoys to lure players away from their base so 
 that another tank can destroy it. In addition, flashing red tanks release a random power-up when destroyed. There are several types of power-ups, such as a clock that stops all enemies, a protective shield,
 and a bomb that eliminates all on-screen enemies. The enemy tanks come in four different sizes, with the largest one requiring four shots to destroy.
+
+![NES - Battle City JPN - General Sprites](https://github.com/kyebinan/Battle-City-AI/assets/155234248/57d1e1a6-2d9e-4538-9722-c753551551d6)
