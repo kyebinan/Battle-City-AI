@@ -23,3 +23,11 @@ and a bomb that eliminates all on-screen enemies. The enemy tanks come in four d
 ![NES - Battle City JPN - Stage 30](https://github.com/kyebinan/Battle-City-AI/assets/155234248/d06a5dd1-6d75-4545-a696-7f5ca94f3f15)
 ![NES - Battle City JPN - Stage 31](https://github.com/kyebinan/Battle-City-AI/assets/155234248/c48798db-4ab2-4dce-89bf-4cbdcf7aaabd)
 
+# About My work
+  ## Motivation 
+  
+  ## Goals
+
+  ## Gameplay
+
+  ## Outcomes
