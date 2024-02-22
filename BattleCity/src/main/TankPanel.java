@@ -4,7 +4,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import entity.Tank;
@@ -106,5 +110,26 @@ public class TankPanel extends JPanel implements Runnable {
 		}
 		
 	}
+	
+	public void screenShot() {
+		// Take a screenshot of the panel
+        BufferedImage image = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_RGB);
+        Graphics2D g2d = image.createGraphics();
+        this.paint(g2d);
+        g2d.dispose();
+
+        // Save the screenshot to a file or perform other actions
+        this.saveScreenshot(image, this.tank.name+".png");
+		
+	}
+	
+	private void saveScreenshot(BufferedImage image, String fileName) {
+        try {
+            ImageIO.write(image, "png", new File(fileName));
+            System.out.println("Screenshot saved successfully!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

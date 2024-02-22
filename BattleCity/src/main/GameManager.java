@@ -46,6 +46,7 @@ public class GameManager {
 		this.window.setVisible(true);
 		
 		this.gamePanel.startGameThread();
+		//this.gamePanel.screenShot();
 	}
 	
 	
