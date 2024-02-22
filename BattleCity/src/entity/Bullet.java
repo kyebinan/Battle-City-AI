@@ -41,6 +41,7 @@ public class Bullet extends Entity {
 		this.solidArea.y = 4;
 		this.solidArea.width = 8;
 		this.solidArea.height = 8;
+		this.collisionOn = false;
 	}
 	
 	 public void finalize() {
@@ -64,8 +65,7 @@ public class Bullet extends Entity {
 	}
 
 	public void update() {
-
-		this.collisionOn = false;
+		
 		this.gp.cChecker.checkTileBullet(this);
 		this.gp.cChecker.checkBulletBullet(this);
 		this.gp.cChecker.checkTankBullet(this.myTank, this);

@@ -17,7 +17,7 @@ public class TileManager {
 
 	public TileManager(GamePanel gp) {
 		this.gp = gp;
-		tile = new Tile[10];
+		tile = new Tile[12];
 		mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
 		getTileImage();
 		loadMap("/maps/stage1");
@@ -29,7 +29,7 @@ public class TileManager {
 			tile[0].image = ImageIO.read(getClass().getResourceAsStream("/materials/empty.png"));
 
 			tile[1] = new Tile();
-			tile[1].image = ImageIO.read(getClass().getResourceAsStream("/materials/border.png"));
+			tile[1].image = ImageIO.read(getClass().getResourceAsStream("/materials/brike.png"));
 			tile[1].collision = true;
 			tile[1].collisionOnBullet = true;
 
@@ -37,18 +37,38 @@ public class TileManager {
 			tile[2].image = ImageIO.read(getClass().getResourceAsStream("/materials/brike.png"));
 			tile[2].collision = true;
 			tile[2].collisionOnBullet = true;
-
+			
 			tile[3] = new Tile();
-			tile[3].image = ImageIO.read(getClass().getResourceAsStream("/materials/steel.png"));
+			tile[3].image = ImageIO.read(getClass().getResourceAsStream("/materials/brike.png"));
 			tile[3].collision = true;
 			tile[3].collisionOnBullet = true;
 
 			tile[4] = new Tile();
-			tile[4].image = ImageIO.read(getClass().getResourceAsStream("/materials/water.png"));
+			tile[4].image = ImageIO.read(getClass().getResourceAsStream("/materials/steel.png"));
 			tile[4].collision = true;
-
+			tile[4].collisionOnBullet = true;
+			
 			tile[5] = new Tile();
-			tile[5].image = ImageIO.read(getClass().getResourceAsStream("/materials/bush.png"));
+			tile[5].image = ImageIO.read(getClass().getResourceAsStream("/materials/steel.png"));
+			tile[5].collision = true;
+			tile[5].collisionOnBullet = true;
+			
+			tile[6] = new Tile();
+			tile[6].image = ImageIO.read(getClass().getResourceAsStream("/materials/steel.png"));
+			tile[6].collision = true;
+			tile[6].collisionOnBullet = true;
+
+			tile[7] = new Tile();
+			tile[7].image = ImageIO.read(getClass().getResourceAsStream("/materials/water.png"));
+			tile[7].collision = true;
+
+			tile[8] = new Tile();
+			tile[8].image = ImageIO.read(getClass().getResourceAsStream("/materials/bush.png"));
+			
+			tile[9] = new Tile();
+			tile[9].image = ImageIO.read(getClass().getResourceAsStream("/materials/border.png"));
+			tile[9].collision = true;
+			tile[9].collisionOnBullet = true;
 
 
 		} catch (IOException e) {

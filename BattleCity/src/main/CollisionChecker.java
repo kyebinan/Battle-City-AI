@@ -84,9 +84,17 @@ public class CollisionChecker {
 			entityTopRow = (entityTopWorldY - bullet.speed) / gp.tileSize;
 			tileNum1 = gp.tileM.mapTileNum[entityLeftCol][entityTopRow];
 			tileNum2 = gp.tileM.mapTileNum[entityRightCol][entityTopRow];
-			if (gp.tileM.tile[tileNum1].collisionOnBullet == true
-					|| gp.tileM.tile[tileNum2].collisionOnBullet == true) {
+			if (gp.tileM.tile[tileNum1].collisionOnBullet == true) {
 				bullet.collisionOn = true;
+				if (tileNum1 == 2) {
+					gp.tileM.mapTileNum[entityRightCol][entityTopRow] = 0;
+				}
+			}
+			if ( gp.tileM.tile[tileNum2].collisionOnBullet == true) {
+				bullet.collisionOn = true;
+				if (tileNum2 == 2) {
+					gp.tileM.mapTileNum[entityRightCol][entityTopRow] = 0;
+				}
 			}
 			break;
 
@@ -94,9 +102,17 @@ public class CollisionChecker {
 			entityBottomRow = (entityBottomWorldY + bullet.speed) / gp.tileSize;
 			tileNum1 = gp.tileM.mapTileNum[entityLeftCol][entityBottomRow];
 			tileNum2 = gp.tileM.mapTileNum[entityRightCol][entityBottomRow];
-			if (gp.tileM.tile[tileNum1].collisionOnBullet == true
-					|| gp.tileM.tile[tileNum2].collisionOnBullet == true) {
+			if (gp.tileM.tile[tileNum1].collisionOnBullet == true) {
 				bullet.collisionOn = true;
+				if (tileNum1 == 2) {
+					gp.tileM.mapTileNum[entityRightCol][entityTopRow] = 0;
+				}
+			}
+			if (gp.tileM.tile[tileNum2].collisionOnBullet == true) {
+				bullet.collisionOn = true;
+				if (tileNum2 == 2) {
+					gp.tileM.mapTileNum[entityRightCol][entityTopRow] = 0;
+				}
 			}
 			break;
 
@@ -104,9 +120,17 @@ public class CollisionChecker {
 			entityLeftCol = (entityLeftWorldX - bullet.speed) / gp.tileSize;
 			tileNum1 = gp.tileM.mapTileNum[entityLeftCol][entityTopRow];
 			tileNum2 = gp.tileM.mapTileNum[entityLeftCol][entityBottomRow];
-			if (gp.tileM.tile[tileNum1].collisionOnBullet == true
-					|| gp.tileM.tile[tileNum2].collisionOnBullet == true) {
+			if (gp.tileM.tile[tileNum1].collisionOnBullet == true) {
 				bullet.collisionOn = true;
+				if (tileNum1 == 2) {
+					gp.tileM.mapTileNum[entityRightCol][entityTopRow] = 0;
+				}
+			}
+			if ( gp.tileM.tile[tileNum2].collisionOnBullet == true) {
+				bullet.collisionOn = true;
+				if (tileNum2 == 2) {
+					gp.tileM.mapTileNum[entityRightCol][entityTopRow] = 0;
+				}
 			}
 			break;
 
@@ -114,9 +138,17 @@ public class CollisionChecker {
 			entityRightCol = (entityRightWorldX + bullet.speed) / gp.tileSize;
 			tileNum1 = gp.tileM.mapTileNum[entityRightCol][entityTopRow];
 			tileNum2 = gp.tileM.mapTileNum[entityRightCol][entityTopRow];
-			if (gp.tileM.tile[tileNum1].collisionOnBullet == true
-					|| gp.tileM.tile[tileNum2].collisionOnBullet == true) {
+			if (gp.tileM.tile[tileNum1].collisionOnBullet == true) {
 				bullet.collisionOn = true;
+				if (tileNum1 ==2) {
+					gp.tileM.mapTileNum[entityRightCol][entityTopRow]= 0 ;
+				}
+			}
+			if (gp.tileM.tile[tileNum2].collisionOnBullet == true) {
+				bullet.collisionOn = true;
+				if (tileNum2 == 2) {
+					gp.tileM.mapTileNum[entityRightCol][entityTopRow]= 0;
+				}
 			}
 			break;
 		}
@@ -183,10 +215,8 @@ public class CollisionChecker {
 					}
 					break;
 				}
-
 			}
 		}
-
 	}
 
 	public void checkBulletBullet(Bullet bullet) {
