@@ -26,6 +26,8 @@ public class Tank extends Entity {
 	public int fire;
 	public int speed;
 	public boolean Hited = false;
+	public boolean spwan = true;
+	public int counterSpwan = 0;
 
 	// DISPLAY PARAMETERS
 	public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
@@ -60,25 +62,32 @@ public class Tank extends Entity {
 		this.solidArea.height = 24;
 		this.fire();
 	}
-
-	public void takeAction() {
-		// TODO change this function 
-	    int max = 4;
-
-	    Random random = new Random();
-	    int value = random.nextInt(max);
-	    String[] action = {"up", "down", "left", "right"};
-	    this.direction = action[value];
+	
+	public void upGrade() {
+		if (this.grade != 0) {
+			this.grade--;
+			this.shield++;
+			this.fire++;
+			this.speed++;
+			this.getImage();
+		}
+	}
+	
+	public void downGrade() {
+		if (this.grade != 4) {
+			this.grade++;
+			this.shield++;
+			this.fire++;
+			this.speed++;
+			this.getImage();
+		}
 	}
 	
 	public void fire() {
-		//TODO allows to shoot a bullet
 		Bullet bullet = new Bullet(this.gp, this.tp, this, this.direction, this.x, this.y, this.speed+1);
 		this.shootedBullet.add(bullet);
 	}
 		
-	
-	// DISPLAY METHODS
 	public void getImage() {
 		try {
 			String filePath = "/tank_" + this.color + "_gr" + this.grade;
@@ -90,6 +99,7 @@ public class Tank extends Entity {
 			left2 = ImageIO.read(getClass().getResourceAsStream(filePath + "/LEFT2.png"));
 			right1 = ImageIO.read(getClass().getResourceAsStream(filePath + "/RIGHT1.png"));
 			right2 = ImageIO.read(getClass().getResourceAsStream(filePath + "/RIGHT2.png"));
+	
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -97,11 +107,9 @@ public class Tank extends Entity {
 	}
 
 	public void update() {
-		//CHECK TILE COLLISION
 		collisionOn = false;
 		gp.cChecker.checkTileTank(this);
 		gp.cChecker.checkTankTank(this);
-		//direction = "right";
 
 		if (collisionOn == false) {
 			switch (direction) {
@@ -134,7 +142,6 @@ public class Tank extends Entity {
 	}
 
 	public void draw(Graphics2D g2) {
-		//BufferedImage image = null;
 		switch (direction) {
 		case "up":
 			if (spriteNum == 0) {
@@ -172,6 +179,7 @@ public class Tank extends Entity {
 			}
 			break;
 		}
+	
 		g2.drawImage(this.image, this.x, this.y, gp.tileSize, gp.tileSize, null);
 		
 		Iterator<Bullet> iter = this.shootedBullet.iterator();
@@ -197,7 +205,6 @@ public class Tank extends Entity {
 		int yy = this.tp.screenHeight/2 - (this.tp.tileSize/2);
 		g2.drawImage(this.image, xx, yy,  this.tp.tileSize,  this.tp.tileSize, null);
 
-
 		Iterator<Tank> iter = this.listeTank.iterator();
 		while (iter.hasNext()) {
 			Tank tmp = iter.next();
@@ -215,8 +222,6 @@ public class Tank extends Entity {
 				g2.drawImage(tmpBullet.image, xxx, yyy,  this.tp.tileSize/2,  this.tp.tileSize/2, null);
 			}
 		}
-		
-		
 	}
 	
 	public void getEnvForOwnPanel(ArrayList<Tank> listeTank) {
