@@ -84,16 +84,14 @@ public class CollisionChecker {
 			entityTopRow = (entityTopWorldY - bullet.speed) / gp.tileSize;
 			tileNum1 = gp.tileM.mapTileNum[entityLeftCol][entityTopRow];
 			tileNum2 = gp.tileM.mapTileNum[entityRightCol][entityTopRow];
-			if (gp.tileM.tile[tileNum1].collisionOnBullet == true) {
-				bullet.collisionOn = true;
-				if (tileNum1 == 2) {
-					gp.tileM.mapTileNum[entityRightCol][entityTopRow] = 0;
+			if (bullet.collisionOn == false) {
+				if (gp.tileM.tile[tileNum1].collisionOnBullet == true) {
+					bullet.collisionOn = true;
+					this.degradeWall(tileNum1, entityLeftCol,  entityTopRow);
 				}
-			}
-			if ( gp.tileM.tile[tileNum2].collisionOnBullet == true) {
-				bullet.collisionOn = true;
-				if (tileNum2 == 2) {
-					gp.tileM.mapTileNum[entityRightCol][entityTopRow] = 0;
+				else if ( gp.tileM.tile[tileNum2].collisionOnBullet == true) {
+					bullet.collisionOn = true;
+					this.degradeWall(tileNum2, entityRightCol,  entityBottomRow);
 				}
 			}
 			break;
@@ -102,16 +100,14 @@ public class CollisionChecker {
 			entityBottomRow = (entityBottomWorldY + bullet.speed) / gp.tileSize;
 			tileNum1 = gp.tileM.mapTileNum[entityLeftCol][entityBottomRow];
 			tileNum2 = gp.tileM.mapTileNum[entityRightCol][entityBottomRow];
-			if (gp.tileM.tile[tileNum1].collisionOnBullet == true) {
-				bullet.collisionOn = true;
-				if (tileNum1 == 2) {
-					gp.tileM.mapTileNum[entityRightCol][entityTopRow] = 0;
+			if (bullet.collisionOn == false) {
+				if (gp.tileM.tile[tileNum1].collisionOnBullet == true) {
+					bullet.collisionOn = true;
+					this.degradeWall(tileNum1, entityLeftCol,  entityBottomRow);
 				}
-			}
-			if (gp.tileM.tile[tileNum2].collisionOnBullet == true) {
-				bullet.collisionOn = true;
-				if (tileNum2 == 2) {
-					gp.tileM.mapTileNum[entityRightCol][entityTopRow] = 0;
+				else if (gp.tileM.tile[tileNum2].collisionOnBullet == true) {
+					bullet.collisionOn = true;
+					this.degradeWall(tileNum2, entityRightCol,  entityBottomRow);
 				}
 			}
 			break;
@@ -120,16 +116,14 @@ public class CollisionChecker {
 			entityLeftCol = (entityLeftWorldX - bullet.speed) / gp.tileSize;
 			tileNum1 = gp.tileM.mapTileNum[entityLeftCol][entityTopRow];
 			tileNum2 = gp.tileM.mapTileNum[entityLeftCol][entityBottomRow];
-			if (gp.tileM.tile[tileNum1].collisionOnBullet == true) {
-				bullet.collisionOn = true;
-				if (tileNum1 == 2) {
-					gp.tileM.mapTileNum[entityRightCol][entityTopRow] = 0;
+			if (bullet.collisionOn == false) {
+				if (gp.tileM.tile[tileNum1].collisionOnBullet == true) {
+					bullet.collisionOn = true;
+					this.degradeWall(tileNum1, entityLeftCol,  entityTopRow);
 				}
-			}
-			if ( gp.tileM.tile[tileNum2].collisionOnBullet == true) {
-				bullet.collisionOn = true;
-				if (tileNum2 == 2) {
-					gp.tileM.mapTileNum[entityRightCol][entityTopRow] = 0;
+				else if ( gp.tileM.tile[tileNum2].collisionOnBullet == true) {
+					bullet.collisionOn = true;
+					this.degradeWall(tileNum2, entityLeftCol,  entityBottomRow);
 				}
 			}
 			break;
@@ -137,22 +131,30 @@ public class CollisionChecker {
 		case "right":
 			entityRightCol = (entityRightWorldX + bullet.speed) / gp.tileSize;
 			tileNum1 = gp.tileM.mapTileNum[entityRightCol][entityTopRow];
-			tileNum2 = gp.tileM.mapTileNum[entityRightCol][entityTopRow];
-			if (gp.tileM.tile[tileNum1].collisionOnBullet == true) {
-				bullet.collisionOn = true;
-				if (tileNum1 ==2) {
-					gp.tileM.mapTileNum[entityRightCol][entityTopRow]= 0 ;
+			tileNum2 = gp.tileM.mapTileNum[entityRightCol][entityBottomRow];
+			if (bullet.collisionOn == false) {
+				if (gp.tileM.tile[tileNum1].collisionOnBullet == true) {
+					bullet.collisionOn = true;
+					this.degradeWall(tileNum1, entityRightCol,  entityTopRow);
 				}
-			}
-			if (gp.tileM.tile[tileNum2].collisionOnBullet == true) {
-				bullet.collisionOn = true;
-				if (tileNum2 == 2) {
-					gp.tileM.mapTileNum[entityRightCol][entityTopRow]= 0;
+				else if (gp.tileM.tile[tileNum2].collisionOnBullet == true) {
+					bullet.collisionOn = true;
+					this.degradeWall(tileNum2, entityRightCol,  entityBottomRow);
 				}
 			}
 			break;
 		}
 
+	}
+	
+	private void degradeWall(int tileNum, int i, int j) {
+		if (tileNum == 1 || tileNum == 2 || tileNum == 3 || tileNum == 5 || tileNum == 6 ) {
+			gp.tileM.mapTileNum[i][j] = tileNum - 1;
+		}
+		else if (tileNum == 4 ) {
+			gp.tileM.mapTileNum[i][j]= 0;	
+		}
+		
 	}
 
 	public void checkTankTank(Tank tank) {

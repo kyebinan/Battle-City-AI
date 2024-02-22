@@ -15,7 +15,7 @@ public class GameManager {
 		this.gamePanel = new GamePanel();
 		this.window = new JFrame();
 		
-		Tank tank = new Tank(gamePanel,"Pink-1", "pink", initGrade, 30, 32, "right");
+		Tank tank = new Tank(gamePanel,"Pink-1", "pink", initGrade, 32, 256, "up");
 		this.listeTank.add(tank);
 		
 		tank = new Tank(gamePanel,"Pink-2", "pink", initGrade, 1100, 32, "left");
@@ -24,7 +24,7 @@ public class GameManager {
 		tank = new Tank(gamePanel,"Pink-3", "pink", initGrade, 504, 32,"right");
 		this.listeTank.add(tank);
 		
-		tank = new Tank(gamePanel,"Pink-4", "pink", initGrade, 160, 864,"up");
+		tank = new Tank(gamePanel,"Pink-4", "pink", initGrade, 32, 512,"down");
 		this.listeTank.add(tank);
 		
 		for(int i = 0; i < nbTank; i++) {
