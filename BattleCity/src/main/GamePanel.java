@@ -33,14 +33,15 @@ public class GamePanel extends JPanel implements Runnable {
 	
 	public ArrayList<Tank> listeTank;
 	Thread gameThread;
-	public TileManager tileM = new TileManager(this);
+	public TileManager tileM;
 	public CollisionChecker cChecker = new CollisionChecker(this);
 
-	public GamePanel() {
+	public GamePanel(String map) {
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
 		this.setBackground(Color.black);
 		this.setDoubleBuffered(true);
 		this.setFocusable(true);
+		this.tileM = new TileManager(this, map);
 	}
 
 	@Override

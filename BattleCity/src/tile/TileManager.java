@@ -15,12 +15,12 @@ public class TileManager {
 	public Tile[] tile;
 	public int mapTileNum[][];
 
-	public TileManager(GamePanel gp) {
+	public TileManager(GamePanel gp, String map) {
 		this.gp = gp;
 		tile = new Tile[12];
 		mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
 		getTileImage();
-		loadMap("/maps/stage1");
+		loadMap(map);
 	}
 
 	public void getTileImage() {
@@ -37,7 +37,7 @@ public class TileManager {
 			tile[2].image = ImageIO.read(getClass().getResourceAsStream("/materials/brike.png"));
 			tile[2].collision = true;
 			tile[2].collisionOnBullet = true;
-			
+
 			tile[3] = new Tile();
 			tile[3].image = ImageIO.read(getClass().getResourceAsStream("/materials/brike.png"));
 			tile[3].collision = true;
@@ -47,12 +47,12 @@ public class TileManager {
 			tile[4].image = ImageIO.read(getClass().getResourceAsStream("/materials/steel.png"));
 			tile[4].collision = true;
 			tile[4].collisionOnBullet = true;
-			
+
 			tile[5] = new Tile();
 			tile[5].image = ImageIO.read(getClass().getResourceAsStream("/materials/steel.png"));
 			tile[5].collision = true;
 			tile[5].collisionOnBullet = true;
-			
+
 			tile[6] = new Tile();
 			tile[6].image = ImageIO.read(getClass().getResourceAsStream("/materials/steel.png"));
 			tile[6].collision = true;
@@ -64,12 +64,11 @@ public class TileManager {
 
 			tile[8] = new Tile();
 			tile[8].image = ImageIO.read(getClass().getResourceAsStream("/materials/bush.png"));
-			
+
 			tile[9] = new Tile();
 			tile[9].image = ImageIO.read(getClass().getResourceAsStream("/materials/border.png"));
 			tile[9].collision = true;
 			tile[9].collisionOnBullet = true;
-
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -89,10 +88,10 @@ public class TileManager {
 				while (worldCol < gp.maxScreenCol) {
 					String numbers[] = line.split(" ");
 					int num = Integer.parseInt(numbers[worldCol]);
-
 					mapTileNum[worldCol][worldRow] = num;
 					worldCol++;
 				}
+				
 				if (worldCol == gp.maxScreenCol) {
 					worldCol = 0;
 					worldRow++;
@@ -100,7 +99,7 @@ public class TileManager {
 			}
 			br.close();
 		} catch (Exception e) {
-			// e.printStackTrace();
+			e.printStackTrace();
 		}
 	}
 
@@ -110,20 +109,15 @@ public class TileManager {
 
 		while (worldCol < gp.maxScreenCol && worldRow < gp.maxScreenRow) {
 			int tileNum = mapTileNum[worldCol][worldRow];
-
 			int worldX = worldCol * gp.tileSize;
 			int worldY = worldRow * gp.tileSize;
-
 			g2.drawImage(tile[tileNum].image, worldX, worldY, gp.tileSize, gp.tileSize, null);
 			worldCol++;
 
 			if (worldCol == gp.maxScreenCol) {
 				worldCol = 0;
-
 				worldRow++;
-
 			}
 		}
-
 	}
 }

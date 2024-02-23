@@ -10,7 +10,6 @@ public class CollisionChecker {
 
 	public CollisionChecker(GamePanel gp) {
 		this.gp = gp;
-
 	}
 
 	public void checkTileTank(Tank tank) {
@@ -66,6 +65,17 @@ public class CollisionChecker {
 
 	}
 
+	private boolean checkGrade(Bullet bullet, int tile) {
+		Tank tank = bullet.myTank;
+		if (tile >= 4) {
+			if (tank.grade == 0 || tank.grade == 1) {
+				return true;
+			}
+			return false;
+		}
+		return true;
+	}
+	
 	public void checkTileBullet(Bullet bullet) {
 		int entityLeftWorldX = bullet.x + bullet.solidArea.x;
 		int entityRightWorldX = bullet.x + bullet.solidArea.x + bullet.solidArea.width;
@@ -87,11 +97,15 @@ public class CollisionChecker {
 			if (bullet.collisionOn == false) {
 				if (gp.tileM.tile[tileNum1].collisionOnBullet == true) {
 					bullet.collisionOn = true;
-					this.degradeWall(tileNum1, entityLeftCol,  entityTopRow);
+					if (this.checkGrade(bullet, tileNum1) == true) {
+						this.degradeWall(tileNum1, entityLeftCol, entityTopRow);
+					}
 				}
 				else if ( gp.tileM.tile[tileNum2].collisionOnBullet == true) {
 					bullet.collisionOn = true;
-					this.degradeWall(tileNum2, entityRightCol,  entityBottomRow);
+					if (this.checkGrade(bullet, tileNum2) == true) {
+						this.degradeWall(tileNum2, entityRightCol, entityBottomRow);
+					}
 				}
 			}
 			break;
@@ -103,11 +117,15 @@ public class CollisionChecker {
 			if (bullet.collisionOn == false) {
 				if (gp.tileM.tile[tileNum1].collisionOnBullet == true) {
 					bullet.collisionOn = true;
-					this.degradeWall(tileNum1, entityLeftCol,  entityBottomRow);
+					if (this.checkGrade(bullet, tileNum1) == true) {
+						this.degradeWall(tileNum1, entityLeftCol, entityBottomRow);
+					}
 				}
 				else if (gp.tileM.tile[tileNum2].collisionOnBullet == true) {
 					bullet.collisionOn = true;
-					this.degradeWall(tileNum2, entityRightCol,  entityBottomRow);
+					if (this.checkGrade(bullet, tileNum2) == true) {
+						this.degradeWall(tileNum2, entityRightCol, entityBottomRow);
+					}
 				}
 			}
 			break;
@@ -119,11 +137,15 @@ public class CollisionChecker {
 			if (bullet.collisionOn == false) {
 				if (gp.tileM.tile[tileNum1].collisionOnBullet == true) {
 					bullet.collisionOn = true;
-					this.degradeWall(tileNum1, entityLeftCol,  entityTopRow);
+					if (this.checkGrade(bullet, tileNum1) == true) {
+						this.degradeWall(tileNum1, entityLeftCol, entityTopRow);
+					}
 				}
 				else if ( gp.tileM.tile[tileNum2].collisionOnBullet == true) {
 					bullet.collisionOn = true;
-					this.degradeWall(tileNum2, entityLeftCol,  entityBottomRow);
+					if (this.checkGrade(bullet, tileNum2) == true) {
+						this.degradeWall(tileNum2, entityLeftCol,  entityBottomRow);
+					}
 				}
 			}
 			break;
@@ -135,11 +157,15 @@ public class CollisionChecker {
 			if (bullet.collisionOn == false) {
 				if (gp.tileM.tile[tileNum1].collisionOnBullet == true) {
 					bullet.collisionOn = true;
-					this.degradeWall(tileNum1, entityRightCol,  entityTopRow);
+					if (this.checkGrade(bullet, tileNum1) == true) {
+						this.degradeWall(tileNum1, entityRightCol, entityTopRow);
+					}
 				}
 				else if (gp.tileM.tile[tileNum2].collisionOnBullet == true) {
 					bullet.collisionOn = true;
-					this.degradeWall(tileNum2, entityRightCol,  entityBottomRow);
+					if (this.checkGrade(bullet, tileNum2) == true) {
+						this.degradeWall(tileNum2, entityRightCol, entityBottomRow);
+					}
 				}
 			}
 			break;

@@ -20,7 +20,7 @@ public class Tank extends Entity {
 	public TankPanel tp;
 	// TANK PARAMETERS
 	public String name;
-	public String color; // yellow or pink
+	public String color;
 	public int grade;
 	public int shield;
 	public int fire;
@@ -39,12 +39,19 @@ public class Tank extends Entity {
 	public ArrayList<Bullet> shootedBullet; 
 
 	// METHODS
-	public Tank(GamePanel gp, String name, String color, int grade, int x, int y, String direction) {
-		this.tp = new TankPanel(this);
+	public Tank(GamePanel gp, String name, int grade, int x, int y, String direction) {
+		this.solidArea = new Rectangle();
+		this.solidArea.x = 4;
+		this.solidArea.y = 4;
+		this.solidArea.width = 24;
+		this.solidArea.height = 24;
+		
+		this.tp = new TankPanel(this); //TODO create an interface Tankpanel
 		this.gp = gp;
 		this.name = name;
-		this.color = color;
+		this.color =name;
 		this.grade = grade;
+		this.changeGrade(grade);
 		
 		this.getImage();
 		this.direction = direction;
@@ -54,34 +61,50 @@ public class Tank extends Entity {
 		this.speed = 2;
 		
 		this.shootedBullet = new ArrayList<Bullet>();
-
-		this.solidArea = new Rectangle();
-		this.solidArea.x = 4;
-		this.solidArea.y = 4;
-		this.solidArea.width = 24;
-		this.solidArea.height = 24;
 		this.fire();
 	}
 	
-	public void upGrade() {
-		if (this.grade != 0) {
-			this.grade--;
-			this.shield++;
-			this.fire++;
-			this.speed++;
-			this.getImage();
+	public void changeGrade(int newGrade) {
+		switch(newGrade) {
+		case 0:
+			this.setUpGrade0();
+			break;
+		case 1:
+			this.setUpGrade1();
+			break;
+		case 2:
+			this.setUpGrade2();
+			break;
+		case 3:
+			this.setUpGrade3();
+			break;
+		case 4:
+			this.setUpGrade4();
+			break;
 		}
+	}
+
+	private void setUpGrade0() {
+		this.grade = 0;
 	}
 	
-	public void downGrade() {
-		if (this.grade != 4) {
-			this.grade++;
-			this.shield++;
-			this.fire++;
-			this.speed++;
-			this.getImage();
-		}
+	private void setUpGrade1() {
+		this.grade = 1;
 	}
+	
+	private void setUpGrade2() {
+		this.grade = 2;
+	}
+	
+	private void setUpGrade3() {
+		this.grade = 3;
+	}
+	
+	private void setUpGrade4() {
+		this.grade = 4;
+	}
+
+
 	
 	public void fire() {
 		Bullet bullet = new Bullet(this.gp, this.tp, this, this.direction, this.x, this.y, this.speed+1);
@@ -91,19 +114,17 @@ public class Tank extends Entity {
 	public void getImage() {
 		try {
 			String filePath = "/tank_" + this.color + "_gr" + this.grade;
-			up1 = ImageIO.read(getClass().getResourceAsStream(filePath + "/UP1.png"));
-			up2 = ImageIO.read(getClass().getResourceAsStream(filePath + "/UP2.png"));
-			down1 = ImageIO.read(getClass().getResourceAsStream(filePath + "/DOWN1.png"));
-			down2 = ImageIO.read(getClass().getResourceAsStream(filePath + "/DOWN2.png"));
-			left1 = ImageIO.read(getClass().getResourceAsStream(filePath + "/LEFT1.png"));
-			left2 = ImageIO.read(getClass().getResourceAsStream(filePath + "/LEFT2.png"));
-			right1 = ImageIO.read(getClass().getResourceAsStream(filePath + "/RIGHT1.png"));
-			right2 = ImageIO.read(getClass().getResourceAsStream(filePath + "/RIGHT2.png"));
-	
+			this.up1 = ImageIO.read(getClass().getResourceAsStream(filePath + "/UP1.png"));
+			this.up2 = ImageIO.read(getClass().getResourceAsStream(filePath + "/UP2.png"));
+			this.down1 = ImageIO.read(getClass().getResourceAsStream(filePath + "/DOWN1.png"));
+			this.down2 = ImageIO.read(getClass().getResourceAsStream(filePath + "/DOWN2.png"));
+			this.left1 = ImageIO.read(getClass().getResourceAsStream(filePath + "/LEFT1.png"));
+			this.left2 = ImageIO.read(getClass().getResourceAsStream(filePath + "/LEFT2.png"));
+			this.right1 = ImageIO.read(getClass().getResourceAsStream(filePath + "/RIGHT1.png"));
+			this.right2 = ImageIO.read(getClass().getResourceAsStream(filePath + "/RIGHT2.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public void update() {
