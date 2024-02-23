@@ -67,7 +67,7 @@ public class CollisionChecker {
 
 	private boolean checkGrade(Bullet bullet, int tile) {
 		Tank tank = bullet.myTank;
-		if (tile >= 4) {
+		if (tile == 4 || tile == 5 || tile == 6 ) {
 			if (tank.grade == 0 || tank.grade == 1) {
 				return true;
 			}
@@ -174,11 +174,11 @@ public class CollisionChecker {
 	}
 	
 	private void degradeWall(int tileNum, int i, int j) {
-		if (tileNum == 1 || tileNum == 2 || tileNum == 3 || tileNum == 5 || tileNum == 6 ) {
+		if (tileNum == 1 || tileNum == 2 || tileNum == 3 || tileNum == 5 || tileNum == 6) {
 			gp.tileM.mapTileNum[i][j] = tileNum - 1;
 		}
 		else if (tileNum == 4 ) {
-			gp.tileM.mapTileNum[i][j]= 0;	
+			gp.tileM.mapTileNum[i][j] = 0;	
 		}
 		
 	}
@@ -317,7 +317,6 @@ public class CollisionChecker {
 					}
 				}
 			}
-
 		}
 	}
 
@@ -345,6 +344,7 @@ public class CollisionChecker {
 							|| (entityLeftWorldX <= tmpEntityRightWorldX && entityRightWorldX >= tmpEntityRightWorldX)
 							|| (entityLeftWorldX >= tmpEntityLeftWorldX && entityRightWorldX <= tmpEntityRightWorldX)) {
 							bullet.collisionOn = true;
+							tmp.strikeByBullet();
 						}
 					}
 					break;
@@ -356,6 +356,7 @@ public class CollisionChecker {
 						|| (entityLeftWorldX <= tmpEntityRightWorldX && entityRightWorldX >= tmpEntityRightWorldX)
 						|| (entityLeftWorldX >= tmpEntityLeftWorldX && entityRightWorldX <= tmpEntityRightWorldX)) {
 							bullet.collisionOn = true;
+							tmp.strikeByBullet();
 						}
 					}
 					break;
@@ -367,6 +368,7 @@ public class CollisionChecker {
 						|| (entityTopWorldY <= tmpEntityBottomWorldY && entityBottomWorldY >= tmpEntityBottomWorldY)
 						|| (entityTopWorldY >= tmpEntityTopWorldY && entityBottomWorldY <= tmpEntityBottomWorldY)) {
 							bullet.collisionOn = true;
+							tmp.strikeByBullet();
 						}
 					}
 					break;
@@ -378,6 +380,7 @@ public class CollisionChecker {
 						|| (entityTopWorldY <= tmpEntityBottomWorldY && entityBottomWorldY >= tmpEntityBottomWorldY)
 						|| (entityTopWorldY >= tmpEntityTopWorldY && entityBottomWorldY <= tmpEntityBottomWorldY)) {
 							bullet.collisionOn = true;
+							tmp.strikeByBullet();
 						}
 					}
 					break;

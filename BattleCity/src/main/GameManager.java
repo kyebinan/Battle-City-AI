@@ -33,7 +33,7 @@ public class GameManager {
 		for(int i = 1; i <= numberTank; i++) {
 			tankYellow = new Tank(this.gamePanel, yellow, initialGrade, 128, 128, "right");
 			this.listeTank.add(tankYellow);
-			tankPink  = new Tank(this.gamePanel, pink, initialGrade, 160, 160, "right");
+			tankPink  = new Tank(this.gamePanel, pink, initialGrade, 256, 128, "right");
 			this.listeTank.add(tankPink);
 		}
 		gamePanel.listeTank = this.listeTank;

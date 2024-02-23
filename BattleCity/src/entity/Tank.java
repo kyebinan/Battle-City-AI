@@ -22,10 +22,9 @@ public class Tank extends Entity {
 	public String name;
 	public String color;
 	public int grade;
-	public int shield;
+	public int life;
 	public int fire;
 	public int speed;
-	public boolean Hited = false;
 	public boolean spwan = true;
 	public int counterSpwan = 0;
 
@@ -51,6 +50,7 @@ public class Tank extends Entity {
 		this.name = name;
 		this.color =name;
 		this.grade = grade;
+		this.life = 3;
 		this.changeGrade(grade);
 		
 		this.getImage();
@@ -81,6 +81,19 @@ public class Tank extends Entity {
 		case 4:
 			this.setUpGrade4();
 			break;
+		}
+		this.getImage();
+	}
+	
+	public void strikeByBullet() {
+		if (this.grade < 4) {
+			this.changeGrade(this.grade + 1);
+		}
+		else if (this.grade == 4 && this.life > 0){
+			this.life--;
+		}
+		else {
+			//TODO destroy the tank when there aren't any life
 		}
 	}
 
